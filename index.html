@@ -27,6 +27,8 @@
         padding: 30px 0;
     }
 
+.footer{margin-top:10px;}
+
 .header, .footer {
     display: flex;
     justify-content: left;
@@ -127,6 +129,7 @@ article {
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 .header .navbar-nav .nav-link {
@@ -151,7 +154,8 @@ article {
     margin-left: 0 !important;
     float: left;
 }
-
+#master{
+margin-bottom: 10px;}
 
     </style>
 
@@ -190,10 +194,39 @@ article {
                 carouselInner.innerHTML += carItem;
             });
         });
+
+$(document).ready(function() {
+        $(".next-btn").click(function() {
+            var currentStep = $(this).parent();
+            var nextStep = $(this).parent().next('.reservation-step');
+            currentStep.hide();
+            nextStep.show();
+            // Si c'est la dernière étape, afficher le bouton de soumission
+            if (nextStep.next('.reservation-step').length == 0) {
+                $("#submit-btn").show();
+            }
+        });
+
+        $(".prev-btn").click(function() {
+            var currentStep = $(this).parent();
+            var prevStep = $(this).parent().prev('.reservation-step');
+            currentStep.hide();
+            prevStep.show();
+        });
+    });
+
+function showStep(step) {
+        for(let i = 1; i <= 5; i++) {
+            document.getElementById('step' + i).style.display = (i === step) ? 'block' : 'none';
+        }
+    }
+
+
     </script>
 </head>
 
 <body>
+< div id="master">
     <div class="header">
         <nav class="navbar navbar-expand-lg" style="background-color: #228B22;">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -263,14 +296,18 @@ article {
         </div>
     </div>
 
-<div class="content">
-    <!-- ... autres éléments ... -->
-    
-    <section id="reservation" class="mt-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Formulaire de Réservation</h2>
-            <form>
-                <!-- Nom & Prénom -->
+
+
+
+
+
+<section id="reservation" class="mt-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Formulaire de Réservation</h2>
+        <form id="reservationForm">
+
+            <!-- Étape 1: Nom, Prénom, Email & Téléphone -->
+            <div id="step1">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputNom">Nom</label>
@@ -281,8 +318,22 @@ article {
                         <input type="text" class="form-control" id="inputPrenom" placeholder="Prénom">
                     </div>
                 </div>
-                
-                <!-- Adresse -->
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputTelephone">Numéro de téléphone</label>
+                        <input type="tel" class="form-control" id="inputTelephone" placeholder="Téléphone">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail">Adresse Email</label>
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="showStep(2)">Suivant</button>
+            </div>
+
+            <!-- Étape 2: Adresse postale -->
+            <div id="step2" style="display:none;">
+                              <!-- Adresse -->
                 <div class="form-group">
                     <label for="inputNumeroCivic">Numéro Civic</label>
                     <input type="text" class="form-control" id="inputNumeroCivic" placeholder="Numéro Civic">
@@ -325,27 +376,23 @@ article {
                         <input type="text" class="form-control" id="inputPostal" placeholder="Code Postal">
                     </div>
                 </div>
+                <button type="button" class="btn btn-primary" onclick="showStep(3)">Suivant</button>
+                <button type="button" class="btn btn-secondary" onclick="showStep(1)">Retour</button>
+            </div>
 
-                <!-- Téléphone & Email -->
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="inputTelephone">Numéro de téléphone</label>
-                        <input type="tel" class="form-control" id="inputTelephone" placeholder="Téléphone">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="inputEmail">Adresse Email</label>
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                    </div>
-                </div>
-
-                <!-- Permis de conduire -->
+            <!-- Étape 3: Numéro de permis -->
+            <div id="step3" style="display:none;">
                 <div class="form-group">
                     <label for="inputPermis">Numéro du permis de conduire</label>
                     <input type="text" class="form-control" id="inputPermis" placeholder="Numéro du permis de conduire">
                 </div>
+                <button type="button" class="btn btn-primary" onclick="showStep(4)">Suivant</button>
+                <button type="button" class="btn btn-secondary" onclick="showStep(2)">Retour</button>
+            </div>
 
-                <!-- Voitures -->
-                <div class="form-group">
+            <!-- Étape 4: Choix de la voiture -->
+            <div id="step4" style="display:none;">
+               <div class="form-group">
                     <label for="inputVoiture">Sélectionnez une voiture</label>
                     <select id="inputVoiture" class="form-control">
                         <option selected>Choisir...</option>
@@ -355,8 +402,12 @@ article {
                         <option>VW Tiguane</option>
                     </select>
                 </div>
+                <button type="button" class="btn btn-primary" onclick="showStep(5)">Suivant</button>
+                <button type="button" class="btn btn-secondary" onclick="showStep(3)">Retour</button>
+            </div>
 
-                <!-- Dates -->
+            <!-- Étape 5: Dates et bouton de réservation -->
+            <div id="step5" style="display:none;">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="dateDebut">Date de début de location</label>
@@ -367,12 +418,16 @@ article {
                         <input type="date" class="form-control" id="dateFin">
                     </div>
                 </div>
-                
-                <!-- Bouton de soumission -->
-                <button type="submit" class="btn btn-primary">Réserver</button>
-            </form>
-        </div>
-    </section>
+                <button type="submit" class="btn btn-success">Réserver</button>
+                <button type="button" class="btn btn-secondary" onclick="showStep(4)">Retour</button>
+            </div>
+            
+        </form>
+    </div>
+</section>
+
+
+</div>
 </div>
 
 
