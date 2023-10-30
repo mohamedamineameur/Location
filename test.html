@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location de voitures futuriste AGFO</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .header , .footer  {
+        text-align: left !important;
+    }
+
+    .content, .container {
+        padding: 30px 0;
+    }
+
+.header, .footer {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+}
+
+}
+
+.header, .footer {
+    display: flex;
+    align-items: center; /* Cette ligne garde les éléments centrés verticalement à tout moment. */
+    justify-content: flex-start; /* Par défaut, les éléments sont alignés à gauche */
+}
+
+@media screen and (min-width: 768px) {
+    .header, .footer {
+        justify-content: center; /* Sur les grands écrans, les éléments sont centrés horizontalement */
+    }
+}
+
+.header {
+    font-size: 35px; 
+    text-transform: uppercase; 
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    text-transform: uppercase;
+    font-size: 1.2em;
+}
+
+.navbar-dark .navbar-toggler {
+    border: none;
+    background-color: transparent;
+}
+
+.navbar-dark .navbar-toggler-icon {
+    font-size: 24px;
+    color: #00FFFF; 
+}
+
+html, body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #2C3E50 !important;
+    color: white;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header, .footer {
+    background-color: #228B22;
+    padding: 20px 0;
+}
+
+.header a, .footer a, ul li a {
+    margin: 0 15px;
+    color: #00FFFF !important;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.header a:hover, .footer a:hover, ul li a:hover {
+    color: #ffffff !important;
+}
+
+.content {
+    padding: 60px 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+article {
+    margin-bottom: 50px;
+}
+
+.highlight {
+    color: #00FFFF !important;
+    font-weight: bold;
+}
+
+
+
+#footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header .navbar-nav .nav-link {
+    font-size: 18px; 
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.header .navbar {
+    justify-content: flex-start;
+}
+
+.navbar-nav {
+    margin-left: 0 !important;
+}
+
+.navbar-collapse {
+    justify-content: flex-start;
+}
+
+.navbar-nav {
+    margin-left: 0 !important;
+    float: left;
+}
+
+
+    </style>
+
+    <script defer>
+        document.addEventListener("DOMContentLoaded", function () {
+            const carsData = [{
+                    img: './rav4.webp',
+                    type: 'SUV',
+                    brand: 'Toyota',
+                    model: 'Rav4',
+                    consumption: '7'
+                },
+                {
+                    img: './honda.jpg',
+                    type: 'Sedan',
+                    brand: 'Honda',
+                    model: 'Accord',
+                    consumption: '6'
+                },
+            ];
+
+            const carouselInner = document.querySelector('.carousel-inner');
+
+            carsData.forEach((car, index) => {
+                const activeClass = index === 0 ? 'active' : '';
+                const carItem = `
+                <div class="carousel-item ${activeClass}">
+                    <img src="${car.img}" class="d-block w-100" alt="${car.brand} ${car.model}">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>${car.type} - ${car.brand} ${car.model}</h5>
+                        <p>Consommation: ${car.consumption} L/100km</p>
+                    </div>
+                </div>
+            `;
+
+                carouselInner.innerHTML += carItem;
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <nav class="navbar navbar-expand-lg" style="background-color: #228B22;">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">≡</span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Liste des voitures</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Réserver</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contactez-nous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">À propos de nous</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="content">
+        <div class="container">
+            <ul>
+                <li><a href="#article1">Article 1: Pourquoi louer avec AGFO?</a></li>
+                <li><a href="#article2">Article 2: Nos voitures électriques</a></li>
+                <li><a href="#article3">Article 3: Conseils pour une location réussie</a></li>
+            </ul>
+
+            <article id="article1">
+                <h2>Pourquoi louer avec AGFO?</h2>
+                <p>La location de voitures est souvent une nécessité pour la plupart des personnes qui cherchent une solution pratique pour se déplacer en ville sans les tracas d'avoir sa propre voiture. Voici pourquoi choisir AGFO.</p>
+            </article>
+
+            <article id="article2">
+                <h2>Nos voitures électriques</h2>
+                <p>Les voitures électriques ont le vent en poupe. Elles sont économiques, écologiques et silencieuses. Découvrez notre gamme.</p>
+            </article>
+
+            <article id="article3">
+                <h2>Conseils pour une location réussie</h2>
+                <p>Louer une voiture est un processus simple, mais quelques précautions sont à prendre. Voici quelques conseils pour une location réussie.</p>
+            </article>
+        </div>
+
+    </div>
+
+    <div class="container mt-5">
+        <div id="demo" class="carousel slide" data-ride="carousel">
+            <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+            </ul>
+            <div class="carousel-inner"></div>
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+    </div>
+
+<div class="content">
+    <!-- ... autres éléments ... -->
+    
+    <section id="reservation" class="mt-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Formulaire de Réservation</h2>
+            <form>
+                <!-- Nom & Prénom -->
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputNom">Nom</label>
+                        <input type="text" class="form-control" id="inputNom" placeholder="Nom">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPrenom">Prénom</label>
+                        <input type="text" class="form-control" id="inputPrenom" placeholder="Prénom">
+                    </div>
+                </div>
+                
+                <!-- Adresse -->
+                <div class="form-group">
+                    <label for="inputNumeroCivic">Numéro Civic</label>
+                    <input type="text" class="form-control" id="inputNumeroCivic" placeholder="Numéro Civic">
+                </div>
+                <div class="form-group">
+                    <label for="inputRue">Nom de la rue</label>
+                    <input type="text" class="form-control" id="inputRue" placeholder="Nom de la rue">
+                </div>
+                <div class="form-group">
+                    <label for="inputApt">Numéro d'apt (optionel)</label>
+                    <input type="text" class="form-control" id="inputApt" placeholder="Numéro d'apt">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputVille">Ville</label>
+                        <input type="text" class="form-control" id="inputVille" placeholder="Ville">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputProvince">Province</label>
+                        <select id="inputProvince" class="form-control">
+                            <!-- Liste des provinces canadiennes -->
+                            <option selected>Choisir...</option>
+                            <option>Alberta</option>
+                            <option>Colombie-Britannique</option>
+                            <option>Manitoba</option>
+                            <option>Nouveau-Brunswick</option>
+                            <option>Terre-Neuve-et-Labrador</option>
+                            <option>Nouvelle-Écosse</option>
+                            <option>Ontario</option>
+                            <option>Île-du-Prince-Édouard</option>
+                            <option>Québec</option>
+                            <option>Saskatchewan</option>
+                            <option>Yukon</option>
+                            <option>Territoires du Nord-Ouest</option>
+                            <option>Nunavut</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputPostal">Code Postal</label>
+                        <input type="text" class="form-control" id="inputPostal" placeholder="Code Postal">
+                    </div>
+                </div>
+
+                <!-- Téléphone & Email -->
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputTelephone">Numéro de téléphone</label>
+                        <input type="tel" class="form-control" id="inputTelephone" placeholder="Téléphone">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail">Adresse Email</label>
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                    </div>
+                </div>
+
+                <!-- Permis de conduire -->
+                <div class="form-group">
+                    <label for="inputPermis">Numéro du permis de conduire</label>
+                    <input type="text" class="form-control" id="inputPermis" placeholder="Numéro du permis de conduire">
+                </div>
+
+                <!-- Voitures -->
+                <div class="form-group">
+                    <label for="inputVoiture">Sélectionnez une voiture</label>
+                    <select id="inputVoiture" class="form-control">
+                        <option selected>Choisir...</option>
+                        <option>Toyota RAV4</option>
+                        <option>Honda CRV</option>
+                        <option>Kia Sorento</option>
+                        <option>VW Tiguane</option>
+                    </select>
+                </div>
+
+                <!-- Dates -->
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="dateDebut">Date de début de location</label>
+                        <input type="date" class="form-control" id="dateDebut">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="dateFin">Date de fin de fin de location</label>
+                        <input type="date" class="form-control" id="dateFin">
+                    </div>
+                </div>
+                
+                <!-- Bouton de soumission -->
+                <button type="submit" class="btn btn-primary">Réserver</button>
+            </form>
+        </div>
+    </section>
+</div>
+
+
+
+    <div class="footer">
+        <div class="container">
+            <nav id="footer">
+                <p>La location est facile avec AGFO Corporate</p>
+            </nav>
+        </div>
+    </div>
+</body>
+</html>
